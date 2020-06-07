@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const ObjectId = require('mongodb').ObjectId;
-const db = require('./../db');
 
 router.get('/departments', (req, res) => {
   req.db.collection('departments').find().toArray((err, data) => {
@@ -30,7 +29,7 @@ router.post('/departments', (req, res) => {
   req.db.collection('departments').insertOne({ name: name }, err => {
     if(err) res.status(500).json({ message: err });
     else res.json({ message: 'OK' });
-  })
+  });
 });
 
 router.put('/departments/:id', (req, res) => {
